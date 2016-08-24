@@ -1,6 +1,6 @@
 /**
  * https://codility.com/programmers/task/tape_equilibrium/
- * https://codility.com/demo/results/trainingEZNJRJ-GKG/
+ * https://codility.com/demo/results/training8472FD-E62/
  */
 'use strict';
 function solution(A) {
@@ -15,13 +15,11 @@ function solution(A) {
     return Math.abs(A[0]);
   }
 
-
   var temp, answer, subtrahend;
-  var sum_temp = 0;
+  var sum_temp = A[0];
   var sum = A.reduce(function (a, b) {
     return a+b;
   }, 0);
-
 
   A.forEach(function (element, index) {
     if (index === 0) {
@@ -29,13 +27,14 @@ function solution(A) {
       return answer =  temp;
     }
 
-    sum_temp += A[index-1];
-    temp = Math.abs(sum_temp - (sum -  sum_temp));
+    if ( index < (A.length-1) ) {
+      sum_temp += A[index];
+      temp = Math.abs(sum_temp - (sum -  sum_temp));
 
-    if (temp < answer) {
-      answer = temp;
+      if (temp < answer) {
+        answer = temp;
+      }
     }
-
     return answer;
 
   });
